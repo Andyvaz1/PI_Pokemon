@@ -1,0 +1,23 @@
+-------Hecho----------
+-Bases de datos completadas
+-Modelos de db completadas
+
+
+-------En Proceso-----
+Rutas del back, estoy en la de por nombre
+
+
+////////////POST EXAMPLE/////////////////
+
+  {
+    "name": "Andy",
+    "hp": "100",
+    "attack": "20",
+    "defence": "40",
+    "speed": "30",
+    "height": "179",
+    "weight": "78",
+    "img": "asdsdasdads",
+    "types" : ["grass", "poison"]
+
+  }

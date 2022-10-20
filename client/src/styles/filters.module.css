@@ -1,0 +1,22 @@
+.filtersContainer {
+    margin-left: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: large;
+    text-decoration: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.selectFilter {
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #6b32c7c0;
+    color: aliceblue;
+}

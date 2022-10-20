@@ -1,0 +1,18 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 225px);
+    gap: 150px;
+    padding: 25px;
+    justify-content: center;
+    margin-right: 100px;
+}
+
+.fondo1 {
+    background: #6c32c7;
+}
+
+.loading {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+}
