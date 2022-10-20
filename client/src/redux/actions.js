@@ -83,3 +83,11 @@ export const searchPokemon = (name) => {
             .catch(() => console.log("Pokemon not found."));
     };
 };
+
+////////FILTRO TYPE//////////
+
+export const filterType = (type) => {
+    return async function (dispatch) {
+        return fetch("");
+    };
+};
