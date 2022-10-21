@@ -13,7 +13,12 @@ import {
     filterAttackDesc,
 } from "../redux/actions";
 
-export default function Filters({ content, setCurrentPage, setLocalPokemons }) {
+export default function Filters({
+    content,
+    localPokemons,
+    setCurrentPage,
+    setLocalPokemons,
+}) {
     const dispatch = useDispatch();
     const { allTypes, allPokemons } = useSelector((state) => state);
     const [disabledState, setDisabledState] = useState(false);

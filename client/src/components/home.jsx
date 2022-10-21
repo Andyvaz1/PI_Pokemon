@@ -44,6 +44,7 @@ export function Home() {
             <SearchBar
                 setCurrentPage={setCurrentPage}
                 setLocalPokemons={setLocalPokemons}
+                localPokemons={localPokemons}
             />
             <div>
                 <Pagination

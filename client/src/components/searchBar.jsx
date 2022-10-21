@@ -5,7 +5,7 @@ import styles from "../styles/searchBar.module.css";
 import searchIcon from "../styles/imagenes/searchIcon.png";
 import Filters from "./filters";
 
-export function SearchBar({ setCurrentPage, setLocalPokemons }) {
+export function SearchBar({ setCurrentPage, setLocalPokemons, localPokemons }) {
     const dispatch = useDispatch();
 
     const [content, setContent] = useState("");
@@ -46,6 +46,7 @@ export function SearchBar({ setCurrentPage, setLocalPokemons }) {
                 content={content}
                 setCurrentPage={setCurrentPage}
                 setLocalPokemons={setLocalPokemons}
+                localPokemons={localPokemons}
             />
         </div>
     );
