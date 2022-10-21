@@ -13,6 +13,7 @@ export const FILTER_ALPHA_AZ = "FILTER_ALPHA_AZ";
 export const FILTER_ALPHA_ZA = "FILTER_ALPHA_ZA";
 export const FILTER_ATTACK_ASC = "FILTER_ATTACK_ASC";
 export const FILTER_ATTACK_DESC = "FILTER_ATTACK_DESC";
+export const NOT_FOUND = "NOT_FOUND";
 
 //////////////ACTION CREATORS//////////////////
 
@@ -80,14 +81,50 @@ export const searchPokemon = (name) => {
         return fetch(`http://localhost:3001/pokemons?name=${name}`)
             .then((response) => response.json())
             .then((json) => dispatch({ type: GET_ALL_POKEMONS, payload: json }))
-            .catch(() => console.log("Pokemon not found."));
+            .catch((error) => dispatch({ type: NOT_FOUND, payload: error }));
     };
 };
 
 ////////FILTRO TYPE//////////
 
 export const filterType = (type) => {
-    return async function (dispatch) {
-        return fetch("");
+    return {
+        type: FILTER_TYPE,
+        payload: type,
     };
 };
+
+//////FILTRO CREATED/////////
+
+export const filterCreated = (dB) => {
+    return {
+        type: FILTER_CREATED,
+        payload: dB,
+    };
+};
+
+////Ordenar por: //////////////
+
+export function filterAlphaAZ() {
+    return {
+        type: FILTER_ALPHA_AZ,
+    };
+}
+
+export function filterAlphaZA() {
+    return {
+        type: FILTER_ALPHA_ZA,
+    };
+}
+
+export function filterAttackAsc() {
+    return {
+        type: FILTER_ATTACK_ASC,
+    };
+}
+
+export function filterAttackDesc() {
+    return {
+        type: FILTER_ATTACK_DESC,
+    };
+}

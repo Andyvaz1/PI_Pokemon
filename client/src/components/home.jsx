@@ -20,9 +20,11 @@ export function Home() {
 
     useEffect(() => {
         dispatch(getAllPokemons());
-        console.log("adentro");
     }, []);
-    console.log(allPokemons);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [allPokemons]);
 
     ///////VARIABLES///////
     const max = Math.ceil(allPokemons.length / perPage);
@@ -41,7 +43,11 @@ export function Home() {
                 />
             </div>
             <div className={styles.grid}>
-                {allPokemons.length > 0 ? (
+                {allPokemons.length === 0 ? (
+                    <div className={styles.loading}>LOADING</div>
+                ) : allPokemons[0] === "Pokemon Not Found" ? (
+                    <div className={styles.loading}>Pokemon Not Found</div>
+                ) : (
                     allPokemons
                         .slice(
                             (currentPage - 1) * perPage,
@@ -57,8 +63,6 @@ export function Home() {
                                 />
                             </div>
                         ))
-                ) : (
-                    <div className={styles.loading}>LOADING</div>
                 )}
                 <br />
             </div>

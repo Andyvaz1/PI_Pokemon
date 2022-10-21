@@ -93,7 +93,7 @@ router.get("/", async (req, res) => {
             if (!(dbSearch[0] == null)) {
                 res.json(dbSearch);
             } else {
-                res.send("Pokemon Not Found");
+                res.send(["Pokemon Not Found"]);
             }
         }
     }
