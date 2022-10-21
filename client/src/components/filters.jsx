@@ -44,6 +44,7 @@ export default function Filters({
 
     //////Event Handelers//////////////
 
+    ////NOTA: PROBAR CON CAMBIAR EL ESTADO GLOBAL/////////////
     function handleChangeType(e) {
         let pokemonByType = allPokemons.filter((pokemon) => {
             return pokemon.types.find((t) => {
@@ -62,6 +63,23 @@ export default function Filters({
     }
 
     function handleChangeOrigin(e) {
+        let pokemonByOrigin = localPokemons.filter((pokemon) => {
+            return pokemon.dataBase == e.target.value;
+        });
+        console.log(pokemonByOrigin);
+        if (e.target.value === "All") {
+            setLocalPokemons(allPokemons);
+        }
+        if (pokemonByOrigin.length > 0 && e.target.value !== "All") {
+            setLocalPokemons(pokemonByOrigin);
+        }
+        if (pokemonByOrigin.length === 0 && e.target.value !== "All") {
+            setLocalPokemons(["Pokemon Not Found"]);
+        }
+    }
+    //////////////VERSION DE LA DE ARRIBA CON GLOBAL///////////////
+    /*
+        function handleChangeOrigin(e) {
         let pokemonByOrigin = allPokemons.filter((pokemon) => {
             return pokemon.dataBase == e.target.value;
         });
@@ -76,6 +94,7 @@ export default function Filters({
             setLocalPokemons(["Pokemon Not Found"]);
         }
     }
+    */
 
     function handleOrderBy(e) {
         setCurrentPage(1);
