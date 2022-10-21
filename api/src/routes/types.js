@@ -8,8 +8,8 @@ const urlTypes = "https://pokeapi.co/api/v2/type";
 
 //////////////PRE-LOAD TYPES de la API a la DB/////////////
 (async () => {
-    const response = await axios.get(urlTypes);
-    const typesApi = response.data.results;
+    const responseApi = await axios.get(urlTypes);
+    const typesApi = responseApi.data.results;
     const filtered = await Promise.all(
         typesApi.map(async (t) => {
             const typesdb = await Type.create({ name: t.name });

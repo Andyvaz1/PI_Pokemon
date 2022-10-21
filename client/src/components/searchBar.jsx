@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import React, { useState } from "react";
 import { searchPokemon } from "../redux/actions";
 import styles from "../styles/searchBar.module.css";
 import searchIcon from "../styles/imagenes/searchIcon.png";
+import Filters from "./filters";
 
-export function SearchBar() {
+export function SearchBar({ setCurrentPage, setLocalPokemons }) {
     const dispatch = useDispatch();
 
     const [content, setContent] = useState("");
@@ -34,9 +35,18 @@ export function SearchBar() {
                 </div>
 
                 <button type="submit" className={styles.buttonSearch}>
-                    <img src={searchIcon} className={styles.iconSearch} />
+                    <img
+                        src={searchIcon}
+                        className={styles.iconSearch}
+                        alt="searchIcon"
+                    />
                 </button>
             </form>
+            <Filters
+                content={content}
+                setCurrentPage={setCurrentPage}
+                setLocalPokemons={setLocalPokemons}
+            />
         </div>
     );
 }

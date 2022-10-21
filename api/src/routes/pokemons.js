@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
                         img: info.data.sprites.other["official-artwork"]
                             .front_default,
                         attack: info.data.stats[1].base_stat,
-                        dataBase: false,
+                        dataBase: 2,
                     };
                 })
             );
@@ -83,7 +83,7 @@ router.get("/", async (req, res) => {
                     img: apiPokemons.sprites.other["official-artwork"]
                         .front_default,
                     attack: apiPokemons.stats[1].base_stat,
-                    dataBase: false,
+                    dataBase: 2,
                 },
             ];
             const searchPokemon = transPokemon.concat(dbSearch);

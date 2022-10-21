@@ -39,8 +39,8 @@ module.exports = (sequelize) => {
                 "https://www.freeiconspng.com/thumbs/pokeball-png/pokeball-transparent-png-2.png",
         },
         dataBase: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true,
+            type: DataTypes.INTEGER,
+            defaultValue: 1,
         },
     });
 };

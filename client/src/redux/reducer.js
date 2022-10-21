@@ -4,7 +4,7 @@ import {
     GET_POKEMON_DETAIL,
     CREATE_POKEMON,
     FILTER_TYPE,
-    FILTER_CREATED,
+    FILTER_ORIGIN,
     FILTER_ALPHA_AZ,
     FILTER_ALPHA_ZA,
     FILTER_ATTACK_ASC,
@@ -40,25 +40,31 @@ export const rootReducer = (state = initialState, action) => {
                 pokemonDetail: action.payload,
             };
         }
-
+        //////////////Filter/////////////////
         case FILTER_TYPE: {
-            return {
-                ...state,
-                allPokemons: state.allPokemons.filter((pokemon) => {
-                    return pokemon.types.find((t) => {
-                        return t === action.payload;
-                    });
-                }),
-            };
+            let pokemonByType = action.payload.filter((pokemon) => {
+                return pokemon.types.find((t) => {
+                    return t === action.t;
+                });
+            });
+            if (pokemonByType.length > 0) {
+                return {
+                    ...state,
+                    allPokemons: pokemonByType,
+                };
+            } else {
+                return {
+                    ...state,
+                    allPokemons: ["Pokemon Not Found"],
+                };
+            }
         }
 
-        case FILTER_CREATED: {
+        case FILTER_ORIGIN: {
             return {
                 ...state,
                 allPokemons: state.allPokemons.filter((pokemon) => {
-                    return pokemon.dataBase.find((db) => {
-                        return db === action.payload;
-                    });
+                    return pokemon.dataBase === action.payload;
                 }),
             };
         }
@@ -82,7 +88,18 @@ export const rootReducer = (state = initialState, action) => {
         case FILTER_ALPHA_ZA:
             return {
                 ...state,
-                allPokemons: state.allPokemons.sort().reverse(),
+                allPokemons: state.allPokemons
+                    .sort((a, b) => {
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        if (a.name < b.name) {
+                            return -1;
+                        }
+
+                        return 0;
+                    })
+                    .reverse(),
             };
 
         case FILTER_ATTACK_DESC:

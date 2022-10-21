@@ -8,7 +8,7 @@ export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const CREATE_POKEMON = "CREATE_POKEMON";
 export const SEARCH_POKEMON = "SEARCH_POKEMON";
 export const FILTER_TYPE = "FILTER_TYPE";
-export const FILTER_CREATED = "FILTER_CREATED";
+export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const FILTER_ALPHA_AZ = "FILTER_ALPHA_AZ";
 export const FILTER_ALPHA_ZA = "FILTER_ALPHA_ZA";
 export const FILTER_ATTACK_ASC = "FILTER_ATTACK_ASC";
@@ -90,15 +90,15 @@ export const searchPokemon = (name) => {
 export const filterType = (type) => {
     return {
         type: FILTER_TYPE,
-        payload: type,
+        t: type,
     };
 };
 
 //////FILTRO CREATED/////////
 
-export const filterCreated = (dB) => {
+export const filterOrigin = (dB) => {
     return {
-        type: FILTER_CREATED,
+        type: FILTER_ORIGIN,
         payload: dB,
     };
 };
