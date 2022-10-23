@@ -32,7 +32,7 @@ export const getAllPokemons = () => {
 
 export const getPokemonDetail = (id) => {
     return async function (dispatch) {
-        return fetch(`http://localhost:3001/${id}`)
+        return fetch(`http://localhost:3001/pokemons/${id}`)
             .then((response) => response.json())
             .then((json) =>
                 dispatch({ type: GET_POKEMON_DETAIL, payload: json })

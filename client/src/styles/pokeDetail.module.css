@@ -1,0 +1,24 @@
+.fondo {
+    background: #6c32c7;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: grid;
+}
+.generos {
+    flex-direction: row;
+    display: flex;
+    flex-direction: row;
+}
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.img {
+    height: 450px;
+    width: 900px;
+    border-radius: 20px;
+    position: relative;
+}

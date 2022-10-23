@@ -18,16 +18,28 @@ export default function Filters({
     localPokemons,
     setCurrentPage,
     setLocalPokemons,
+    localOrder,
+    setLocalOrder,
+    orderBy,
 }) {
     const dispatch = useDispatch();
     const { allTypes, allPokemons } = useSelector((state) => state);
     const [disabledState, setDisabledState] = useState(false);
+    const [localType, setLocalType] = useState("All");
+    const [localOrigin, setLocalOrigin] = useState("All");
+
+    /////// HOOKS /////////
+    /* useEffect(() => {
+        setLocalType("All");
+        setLocalOrigin("All");
+    }, []); */
 
     useEffect(() => {
         if (content.length > 0) {
             setDisabledState(true);
         } else setDisabledState(false);
     }, [content]);
+
     /////Creo una lista de tipos en orden ascendente y Creo el componente option list/////
     let typeList = allTypes.map((t) => {
         return t.name;
@@ -41,101 +53,99 @@ export default function Filters({
             </option>
         );
     }
+    ///////FUNCIONES SETTERS ONCHANGE EL ESTADO LOCAL///////
+    function setterType(e) {
+        setLocalType(e.target.value);
+    }
+
+    function setterOrigin(e) {
+        setLocalOrigin(e.target.value);
+    }
+
+    function setterOrder(e) {
+        setLocalOrder(e.target.value);
+        setLocalPokemons(orderBy(localPokemons));
+    }
+
+    //////Funciones Filtro//////////
+    function filterType(t) {
+        let pokemonByType = allPokemons.filter((pokemon) => {
+            return pokemon.types.find((type) => {
+                return type === t;
+            });
+        });
+        return pokemonByType;
+    }
+
+    function filterOrigin(o, array) {
+        let pokemonByOrigin = array.filter((pokemon) => {
+            return pokemon.dataBase == o;
+        });
+        return pokemonByOrigin;
+    }
 
     //////Event Handelers//////////////
 
-    ////NOTA: PROBAR CON CAMBIAR EL ESTADO GLOBAL/////////////
-    function handleChangeType(e) {
-        let pokemonByType = allPokemons.filter((pokemon) => {
-            return pokemon.types.find((t) => {
-                return t === e.target.value;
-            });
-        });
-        if (pokemonByType.length > 0) {
+    function applyFilter(e) {
+        e.preventDefault();
+        let pokemonByType = filterType(localType, allPokemons);
+        let pokemonByOrigin = filterOrigin(localOrigin, allPokemons);
+        let pokemonBothFilters = filterOrigin(localOrigin, pokemonByType);
+
+        if (localType === "All" && localOrigin === "All") {
+            setLocalPokemons(allPokemons);
+        }
+        if (pokemonByType.length > 0 && localOrigin === "All") {
             setLocalPokemons(pokemonByType);
         }
-        if (e.target.value === "All") {
-            setLocalPokemons(allPokemons);
-        }
-        if (pokemonByType.length === 0 && e.target.value !== "All") {
-            setLocalPokemons(["Pokemon Not Found"]);
-        }
-    }
-
-    function handleChangeOrigin(e) {
-        let pokemonByOrigin = localPokemons.filter((pokemon) => {
-            return pokemon.dataBase == e.target.value;
-        });
-        console.log(pokemonByOrigin);
-        if (e.target.value === "All") {
-            setLocalPokemons(allPokemons);
-        }
-        if (pokemonByOrigin.length > 0 && e.target.value !== "All") {
+        if (pokemonByOrigin.length > 0 && localType === "All") {
             setLocalPokemons(pokemonByOrigin);
         }
-        if (pokemonByOrigin.length === 0 && e.target.value !== "All") {
-            setLocalPokemons(["Pokemon Not Found"]);
-        }
-    }
-    //////////////VERSION DE LA DE ARRIBA CON GLOBAL///////////////
-    /*
-        function handleChangeOrigin(e) {
-        let pokemonByOrigin = allPokemons.filter((pokemon) => {
-            return pokemon.dataBase == e.target.value;
-        });
-        console.log(pokemonByOrigin);
-        if (e.target.value === "All") {
-            setLocalPokemons(allPokemons);
-        }
-        if (pokemonByOrigin.length > 0) {
-            setLocalPokemons(pokemonByOrigin);
-        }
-        if (pokemonByOrigin.length === 0 && e.target.value !== "All") {
-            setLocalPokemons(["Pokemon Not Found"]);
-        }
-    }
-    */
+        if (pokemonBothFilters.length > 0) {
+            setLocalPokemons(pokemonBothFilters);
 
-    function handleOrderBy(e) {
-        setCurrentPage(1);
-        if (e.target.value === "-") {
-            dispatch(getAllPokemons());
+            console.log("bothflters");
         }
-        if (e.target.value === "A-Z") {
-            dispatch(filterAlphaAZ());
+        if (
+            pokemonBothFilters.length === 0 &&
+            localType !== "All" &&
+            pokemonBothFilters.length === 0 &&
+            localOrigin !== "All"
+        ) {
+            console.log("No filter match");
+            setLocalPokemons(["Pokemon Not Found"]);
         }
-        if (e.target.value === "Z-A") {
-            dispatch(filterAlphaZA());
-        }
-        if (e.target.value === "attackDesc") {
-            dispatch(filterAttackAsc());
-        }
-        if (e.target.value === "attackAsc") {
-            dispatch(filterAttackDesc());
+        if (
+            (pokemonByType.length === 0 && localType !== "All") ||
+            (pokemonByOrigin.length === 0 && localOrigin !== "All")
+        ) {
+            console.log("No filter match");
+            setLocalPokemons(["Pokemon Not Found"]);
         }
     }
 
     return (
         <div className={styles.filtersContainer}>
-            <form onChange={(e) => handleChangeType(e)}>
+            <form>
+                <label className={styles.label}>FILTERS:</label>
                 <label className={styles.label}>Type:</label>
                 <select
                     name="selectType"
                     className={styles.selectFilter}
                     disabled={disabledState}
+                    onChange={(e) => setterType(e)}
                 >
                     <option key="keyAllTypes" value="All">
                         All
                     </option>
                     {optionsList}
                 </select>
-            </form>
-            <form onChange={(e) => handleChangeOrigin(e)}>
                 <label className={styles.label}>Origin:</label>
                 <select
                     name="selectOrigin"
                     className={styles.selectFilter}
                     disabled={disabledState}
+                    onChange={(e) => setterOrigin(e)}
                 >
                     <option key="keyAllOrigin" value="All">
                         All
@@ -147,8 +157,17 @@ export default function Filters({
                         User
                     </option>
                 </select>
+                <button
+                    name="apply"
+                    onClick={(e) => {
+                        applyFilter(e);
+                    }}
+                >
+                    Apply
+                </button>
             </form>
-            <form onChange={(e) => handleOrderBy(e)}>
+            <span></span>
+            <form onChange={(e) => orderBy(e.target.value)}>
                 <label className={styles.label}>Order by:</label>
                 <select name="orderBy" className={styles.selectFilter}>
                     <option key="-" value="-">

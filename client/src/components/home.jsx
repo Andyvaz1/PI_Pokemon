@@ -17,23 +17,134 @@ export function Home() {
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage, setPerPage] = useState(12);
     const [localPokemons, setLocalPokemons] = useState([]);
+    const [localOrder, setLocalOrder] = useState("-");
 
-    /////////////USE EFECT PARA SETTEAR EL ESTADO GLOBAL CUANDO DE MONTA///////////
+    /////////////HOOKS///////////
 
     useEffect(() => {
         dispatch(getAllPokemons());
         dispatch(getAllTypes());
-        setLocalPokemons(allPokemons);
-        console.log(allTypes);
     }, []);
     useEffect(() => {
         setLocalPokemons(allPokemons);
     }, [allPokemons]);
     useEffect(() => {
         setCurrentPage(1);
+        console.log(localPokemons);
     }, [localPokemons]);
 
+    useEffect(() => {
+        console.log("orderEffect");
+    }, [localOrder]);
+
+    /*  useEffect(() => {
+        setLocalPokemons(orderBy(localPokemons));
+        console.log(localPokemons);
+    }, [localPokemons]);
+    ////////////////////*/
+
+    /////Functiones OrderBy///////
+
+    function orderID(array) {
+        let result = array.sort((a, b) => {
+            if (parseInt(a.id) > parseInt(b.id)) {
+                return 1;
+            }
+            if (parseInt(a.id) < parseInt(b.id)) {
+                return -1;
+            }
+
+            return 0;
+        });
+        return result;
+    }
+
+    function orderAlphaAZ(array) {
+        let result = array.sort((a, b) => {
+            if (a.name > b.name) {
+                return 1;
+            }
+            if (a.name < b.name) {
+                return -1;
+            }
+
+            return 0;
+        });
+        return result;
+    }
+
+    function orderAlphaZA(array) {
+        let result = array
+            .sort((a, b) => {
+                if (a.name > b.name) {
+                    return 1;
+                }
+                if (a.name < b.name) {
+                    return -1;
+                }
+
+                return 0;
+            })
+            .reverse();
+        return result;
+    }
+
+    function orderAttackAsc(array) {
+        let result = array.sort((a, b) => {
+            if (parseFloat(a.attack) > parseFloat(b.attack)) {
+                return 1;
+            }
+            if (parseFloat(a.attack) < parseFloat(b.attack)) {
+                return -1;
+            }
+
+            return 0;
+        });
+        return result;
+    }
+
+    function orderAttackDesc(array) {
+        let result = array.sort((a, b) => {
+            if (parseFloat(a.attack) < parseFloat(b.attack)) {
+                return 1;
+            }
+            if (parseFloat(a.attack) > parseFloat(b.attack)) {
+                return -1;
+            }
+
+            return 0;
+        });
+        return result;
+    }
+
+    function orderBy(e) {
+        setLocalOrder(e);
+        console.log(localPokemons);
+        console.log(localOrder);
+        if (localPokemons === undefined) {
+            return [];
+        }
+        if (localPokemons[0] === "Pokemon Not Found") {
+            return localPokemons;
+        }
+        if (e === "-") {
+            setLocalPokemons(orderID(localPokemons));
+        }
+        if (e === "A-Z") {
+            return orderAlphaAZ(localPokemons);
+        }
+        if (e === "Z-A") {
+            return orderAlphaZA(localPokemons);
+        }
+        if (e === "attackAsc") {
+            return orderAttackAsc(localPokemons);
+        }
+        if (e === "attackDesc") {
+            return orderAttackDesc(localPokemons);
+        }
+    }
     ///////VARIABLES///////
+
     const max = Math.ceil(localPokemons.length / perPage);
 
     ////////RENDERIZADO//////////
@@ -45,6 +156,9 @@ export function Home() {
                 setCurrentPage={setCurrentPage}
                 setLocalPokemons={setLocalPokemons}
                 localPokemons={localPokemons}
+                localOrder={localOrder}
+                setLocalOrder={setLocalOrder}
+                orderBy={orderBy}
             />
             <div>
                 <Pagination
