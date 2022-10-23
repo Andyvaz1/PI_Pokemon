@@ -20,21 +20,29 @@ export function Home() {
     const [localOrder, setLocalOrder] = useState("-");
 
     /////////////HOOKS///////////
-
+    console.log("afuera", localPokemons);
     useEffect(() => {
         dispatch(getAllPokemons());
         dispatch(getAllTypes());
     }, []);
+
     useEffect(() => {
         setLocalPokemons(allPokemons);
     }, [allPokemons]);
+
     useEffect(() => {
         setCurrentPage(1);
-        console.log(localPokemons);
+        if (localPokemons) {
+            setLocalPokemons(orderBy(localOrder));
+            setCurrentPage(1);
+            console.log("UseEffect localPokemons Adentro", localOrder);
+        }
+        console.log("UseEffect localPokemons Afuera", localOrder);
     }, [localPokemons]);
 
     useEffect(() => {
-        console.log("orderEffect");
+        setLocalOrder(localOrder);
+        console.log(localOrder);
     }, [localOrder]);
 
     /*  useEffect(() => {
@@ -119,8 +127,8 @@ export function Home() {
 
     function orderBy(e) {
         setLocalOrder(e);
-        console.log(localPokemons);
-        console.log(localOrder);
+
+        console.log("funcion OrderBy", localOrder);
         if (localPokemons === undefined) {
             return [];
         }
@@ -128,7 +136,7 @@ export function Home() {
             return localPokemons;
         }
         if (e === "-") {
-            setLocalPokemons(orderID(localPokemons));
+            return orderID(localPokemons);
         }
         if (e === "A-Z") {
             return orderAlphaAZ(localPokemons);

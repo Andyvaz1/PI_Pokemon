@@ -94,15 +94,20 @@ export default function Filters({
 
         if (localType === "All" && localOrigin === "All") {
             setLocalPokemons(allPokemons);
+            console.log(localOrder);
+            orderBy(localOrder);
         }
         if (pokemonByType.length > 0 && localOrigin === "All") {
             setLocalPokemons(pokemonByType);
+            orderBy(localOrder);
         }
         if (pokemonByOrigin.length > 0 && localType === "All") {
             setLocalPokemons(pokemonByOrigin);
+            orderBy(localOrder);
         }
         if (pokemonBothFilters.length > 0) {
             setLocalPokemons(pokemonBothFilters);
+            orderBy(localOrder);
 
             console.log("bothflters");
         }
