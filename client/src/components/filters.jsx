@@ -62,11 +62,6 @@ export default function Filters({
         setLocalOrigin(e.target.value);
     }
 
-    function setterOrder(e) {
-        setLocalOrder(e.target.value);
-        setLocalPokemons(orderBy(localPokemons));
-    }
-
     //////Funciones Filtro//////////
     function filterType(t) {
         let pokemonByType = allPokemons.filter((pokemon) => {
@@ -93,21 +88,16 @@ export default function Filters({
         let pokemonBothFilters = filterOrigin(localOrigin, pokemonByType);
 
         if (localType === "All" && localOrigin === "All") {
-            setLocalPokemons(allPokemons);
-            console.log(localOrder);
-            orderBy(localOrder);
+            setLocalPokemons(orderBy(localOrder, allPokemons));
         }
         if (pokemonByType.length > 0 && localOrigin === "All") {
-            setLocalPokemons(pokemonByType);
-            orderBy(localOrder);
+            setLocalPokemons(orderBy(localOrder, pokemonByType));
         }
         if (pokemonByOrigin.length > 0 && localType === "All") {
-            setLocalPokemons(pokemonByOrigin);
-            orderBy(localOrder);
+            setLocalPokemons(orderBy(localOrder, pokemonByOrigin));
         }
         if (pokemonBothFilters.length > 0) {
-            setLocalPokemons(pokemonBothFilters);
-            orderBy(localOrder);
+            setLocalPokemons(orderBy(localOrder, pokemonBothFilters));
 
             console.log("bothflters");
         }
@@ -172,7 +162,7 @@ export default function Filters({
                 </button>
             </form>
             <span></span>
-            <form onChange={(e) => orderBy(e.target.value)}>
+            <form onChange={(e) => setLocalOrder(e.target.value)}>
                 <label className={styles.label}>Order by:</label>
                 <select name="orderBy" className={styles.selectFilter}>
                     <option key="-" value="-">

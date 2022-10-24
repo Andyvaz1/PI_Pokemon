@@ -32,17 +32,11 @@ export function Home() {
 
     useEffect(() => {
         setCurrentPage(1);
-        if (localPokemons) {
-            setLocalPokemons(orderBy(localOrder));
-            setCurrentPage(1);
-            console.log("UseEffect localPokemons Adentro", localOrder);
-        }
-        console.log("UseEffect localPokemons Afuera", localOrder);
     }, [localPokemons]);
 
     useEffect(() => {
-        setLocalOrder(localOrder);
-        console.log(localOrder);
+        let arr = orderBy(localOrder, [...localPokemons]);
+        setLocalPokemons(arr);
     }, [localOrder]);
 
     /*  useEffect(() => {
@@ -54,7 +48,7 @@ export function Home() {
     /////Functiones OrderBy///////
 
     function orderID(array) {
-        let result = array.sort((a, b) => {
+        let result = array?.sort((a, b) => {
             if (parseInt(a.id) > parseInt(b.id)) {
                 return 1;
             }
@@ -68,7 +62,7 @@ export function Home() {
     }
 
     function orderAlphaAZ(array) {
-        let result = array.sort((a, b) => {
+        let result = array?.sort((a, b) => {
             if (a.name > b.name) {
                 return 1;
             }
@@ -125,31 +119,32 @@ export function Home() {
         return result;
     }
 
-    function orderBy(e) {
-        setLocalOrder(e);
-
+    function orderBy(e, array) {
         console.log("funcion OrderBy", localOrder);
+        let sorted = [];
         if (localPokemons === undefined) {
-            return [];
+            sorted = [];
         }
         if (localPokemons[0] === "Pokemon Not Found") {
-            return localPokemons;
+            sorted = array;
         }
         if (e === "-") {
-            return orderID(localPokemons);
+            sorted = orderID(array);
         }
         if (e === "A-Z") {
-            return orderAlphaAZ(localPokemons);
+            sorted = orderAlphaAZ(array);
         }
         if (e === "Z-A") {
-            return orderAlphaZA(localPokemons);
+            sorted = orderAlphaZA(array);
         }
         if (e === "attackAsc") {
-            return orderAttackAsc(localPokemons);
+            sorted = orderAttackAsc(array);
         }
         if (e === "attackDesc") {
-            return orderAttackDesc(localPokemons);
+            sorted = orderAttackDesc(array);
         }
+        console.log(array);
+        return array;
     }
     ///////VARIABLES///////
 
