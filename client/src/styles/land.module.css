@@ -80,46 +80,58 @@ span {
     height: 100vh;
     opacity: 0.1;
 }
+.togglerwrapper {
+    display: block;
+    width: 45px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
 
-/* toggle-pill-color */
-.toggle-pill-color input[type="checkbox"] {
+.togglerwrapper input[type="checkbox"] {
     display: none;
 }
-.toggle-pill-color input[type="checkbox"] + label {
-    display: block;
-    position: relative;
-    width: 3em;
-    height: 1.6em;
-    margin-bottom: 20px;
-    border-radius: 1em;
-    background: #e84d4d;
-    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-transition: background 0.1s ease-in-out;
-    transition: background 0.1s ease-in-out;
+
+.togglerwrapper input[type="checkbox"]:checked + .togglerslider {
+    background-color: #44cc66;
 }
-.toggle-pill-color input[type="checkbox"] + label:before {
-    content: "";
-    display: block;
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 1em;
-    background: #fff;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+
+.togglerwrapper .togglerslider {
+    background-color: #ccc;
     position: absolute;
-    left: 0.2em;
-    top: 0.2em;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
 }
-.toggle-pill-color input[type="checkbox"]:checked + label {
-    background: #47cf73;
+
+.togglerwrapper .togglerknob {
+    position: absolute;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
 }
-.toggle-pill-color input[type="checkbox"]:checked + label:before {
-    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
-    left: 1.6em;
+
+/*--------------------------------------------------------------
+3.0 Effects Styles 
+--------------------------------------------------------------*/
+
+/*Style 1*/
+
+.togglerwrapper.style1
+    input[type="checkbox"]:checked
+    + .togglerslider
+    .togglerknob {
+    left: calc(100% - 19px - 3px);
 }
-/* toggle-pill-color end */
+
+.togglerwrapper.style1 .togglerknob {
+    width: calc(25px - 6px);
+    height: calc(25px - 6px);
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    background-color: #fff;
+}

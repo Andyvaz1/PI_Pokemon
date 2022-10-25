@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styles from "../styles/land.module.css";
 import videoFondo from "../styles/videos/videoFondo.mp4";
 import landTitle from "../styles/imagenes/landTitle.png";
-import pokeBallLand from "../styles/imagenes/pokeBallLand.png";
 
 export function Land() {
     return (

@@ -6,6 +6,7 @@ import { SearchBar } from "./searchBar";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/home.module.css";
+import loadingGif from "../styles/videos/loading.gif";
 
 export function Home() {
     /////////TRAER EL DISPATCH PARA USAR EL REDUCER Y PROPIEDAD allPokemons del estado Global/////////
@@ -171,7 +172,10 @@ export function Home() {
             </div>
             <div className={styles.grid}>
                 {localPokemons.length === 0 ? (
-                    <div className={styles.loading}>LOADING</div>
+                    <div className={styles.loading}>
+                        LOADING
+                        <img alt="loading" src={loadingGif} />
+                    </div>
                 ) : localPokemons[0] === "Pokemon Not Found" ? (
                     <div className={styles.loading}>Pokemon Not Found</div>
                 ) : (
