@@ -98,7 +98,7 @@ export function PokeCreate() {
 
     useEffect(() => {
         let arr = formulario;
-        if (arr.name.length > 0 && arr.types.length > 0) {
+        if (arr.name !== "" && arr.types.length > 0) {
             setDisabledSubmit(false);
         } else setDisabledSubmit(true);
     }, [formulario]);
@@ -134,70 +134,106 @@ export function PokeCreate() {
     }
 
     return (
-        <div className={styles.fondo1}>
-            <h1>Register a new Pokemon!</h1>
-            <form
-                className={styles.myForm}
-                onSubmit={(e) => {
-                    handleSubmit(e);
-                }}
-            >
-                <div>
-                    <h4>Name</h4>
+        <div className={styles.body}>
+            <div className={styles.container}>
+                <div className={styles.title}>Register a new Pokemon!</div>
+                <form
+                    className={styles.userDetail}
+                    onSubmit={(e) => {
+                        handleSubmit(e);
+                    }}
+                >
+                    <div className={styles.inputBox}>
+                        <h4>
+                            Name{" "}
+                            {formulario.name !== "" &&
+                            formulario.name.length <= 12 ? (
+                                <span> ✅</span>
+                            ) : (
+                                <span className={styles.spancitoError}>
+                                    *required
+                                </span>
+                            )}
+                        </h4>
 
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        id="imput-name"
-                        name="name"
-                        value={formulario.name}
-                        onChange={(e) =>
-                            setFormulario({
-                                type: "SET_NAME",
-                                payload: e.target.value,
-                            })
-                        }
-                    />
-                    {formulario.name !== "" ? (
-                        <label>✅</label>
-                    ) : (
-                        <label>*required</label>
-                    )}
-                </div>
-                <br />
-                <div>
-                    <h4>Types</h4>
-                    <div>
-                        {allTypes.map((e, index) => (
-                            <div key={index}>
-                                <label>
-                                    {e.name.charAt(0).toUpperCase() +
-                                        e.name.slice(1)}
-                                </label>
-                                <input
-                                    key={index}
-                                    type="checkbox"
-                                    value={e.name}
-                                    name="types"
-                                    onClick={(e) => checkClick(e)}
-                                    onChange={() => checkChange(index)}
-                                    checked={checked.includes(index)}
-                                    disabled={
-                                        !checked.includes(index) &&
-                                        checked.length > 1
-                                    }
-                                />
-                            </div>
-                        ))}{" "}
+                        <input
+                            required
+                            maxLength={12}
+                            type="text"
+                            placeholder="Name"
+                            id="imput-name"
+                            name="name"
+                            className={styles.inputName}
+                            value={formulario.name}
+                            onChange={(e) =>
+                                setFormulario({
+                                    type: "SET_NAME",
+                                    payload: e.target.value,
+                                })
+                            }
+                        />
+
                         <span
-                            style={
-                                formulario.types.length > 1
-                                    ? { color: "red" }
-                                    : { color: "black" }
+                            className={
+                                formulario.name.length >= 12
+                                    ? styles.spancitoError
+                                    : styles.spancito
                             }
                         >
-                            *max 2 types
+                            *(max 12 chartacters)
                         </span>
+                    </div>
+                    <br />
+                    <div>
+                        <h4>
+                            Types{" "}
+                            {formulario.types.length > 0 ? (
+                                <span> ✅</span>
+                            ) : (
+                                <span className={styles.spancitoError}>
+                                    *required
+                                </span>
+                            )}
+                        </h4>
+                        <div className={styles.typesDetails}>
+                            <ul className={styles.typesDetails}>
+                                {allTypes.map((e, index) => (
+                                    <li
+                                        key={index}
+                                        className={styles.typesDetails}
+                                    >
+                                        <label>
+                                            {e.name.charAt(0).toUpperCase() +
+                                                e.name.slice(1) +
+                                                " "}
+                                        </label>
+                                        <input
+                                            key={index}
+                                            type="checkbox"
+                                            value={e.name}
+                                            name="types"
+                                            onClick={(e) => checkClick(e)}
+                                            onChange={() => checkChange(index)}
+                                            checked={checked.includes(index)}
+                                            disabled={
+                                                !checked.includes(index) &&
+                                                checked.length > 1
+                                            }
+                                        />
+                                    </li>
+                                ))}
+                            </ul>{" "}
+                            <span
+                                style={
+                                    formulario.types.length > 1
+                                        ? { color: "red" }
+                                        : { color: "black" }
+                                }
+                                className={styles.spancito}
+                            >
+                                *max 2 types
+                            </span>
+                        </div>
                     </div>
                     <div name="stats">
                         <h4>Stats:</h4>
@@ -205,9 +241,11 @@ export function PokeCreate() {
                         <input
                             type="number"
                             id="hp"
+                            className={styles.inputNumber}
                             value={formulario.hp}
                             min={1}
                             max={1000}
+                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -235,9 +273,11 @@ export function PokeCreate() {
                         <input
                             type="number"
                             id="attack"
+                            className={styles.inputNumber}
                             value={formulario.attack}
                             min={1}
                             max={1000}
+                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -265,9 +305,11 @@ export function PokeCreate() {
                         <input
                             type="number"
                             id="defence"
+                            className={styles.inputNumber}
                             value={formulario.defence}
                             min={1}
                             max={1000}
+                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -295,9 +337,11 @@ export function PokeCreate() {
                         <input
                             type="number"
                             id="speed"
+                            className={styles.inputNumber}
                             value={formulario.speed}
                             min={1}
                             max={1000}
+                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -321,69 +365,80 @@ export function PokeCreate() {
                                 }
                             }}
                         />
+                        <span className={styles.spancito}>*max 1000 each</span>
                     </div>
-                </div>
-                <div name="Biometrics">
-                    <h4>Biometrics</h4>
-                    <div>
-                        <label>Height: </label>
-                        <input
-                            type="number"
-                            id="height"
-                            value={formulario.height}
-                            min={0.5}
-                            step={0.5}
-                            onChange={(e) => {
-                                if (
-                                    e.target.value < 0.5 ||
-                                    e.target.value === ""
-                                ) {
-                                    setFormulario({
-                                        type: "SET_HEIGHT",
-                                        payload: 0.5,
-                                    });
-                                } else {
-                                    setFormulario({
-                                        type: "SET_HEIGHT",
-                                        payload: e.target.value,
-                                    });
-                                }
-                            }}
-                        />
-                        <span>Cm</span>
+
+                    <div name="Biometrics">
+                        <h4>Biometrics: </h4>
+                        <div>
+                            <label>Height: </label>
+                            <input
+                                type="number"
+                                id="height"
+                                className={styles.inputNumber}
+                                value={formulario.height}
+                                min={0.5}
+                                step={0.5}
+                                onChange={(e) => {
+                                    if (
+                                        e.target.value < 0.5 ||
+                                        e.target.value === ""
+                                    ) {
+                                        setFormulario({
+                                            type: "SET_HEIGHT",
+                                            payload: 0.5,
+                                        });
+                                    } else {
+                                        setFormulario({
+                                            type: "SET_HEIGHT",
+                                            payload: e.target.value,
+                                        });
+                                    }
+                                }}
+                            />
+                            <span>Cm</span>
+                        </div>
+                        <div>
+                            <label>Weight:</label>
+                            <input
+                                type="number"
+                                id="weight"
+                                className={styles.inputNumber}
+                                value={formulario.weight}
+                                min={0.5}
+                                step={0.5}
+                                onChange={(e) => {
+                                    if (
+                                        e.target.value < 0.5 ||
+                                        e.target.value === ""
+                                    ) {
+                                        setFormulario({
+                                            type: "SET_WEIGHT",
+                                            payload: 0.5,
+                                        });
+                                    } else {
+                                        setFormulario({
+                                            type: "SET_WEIGHT",
+                                            payload: e.target.value,
+                                        });
+                                    }
+                                }}
+                            />
+                            <span>Kg</span>
+                        </div>
                     </div>
-                    <div>
-                        <label>Weight: </label>
-                        <input
-                            type="number"
-                            id="weight"
-                            value={formulario.weight}
-                            min={0.5}
-                            step={0.5}
-                            onChange={(e) => {
-                                if (
-                                    e.target.value < 0.5 ||
-                                    e.target.value === ""
-                                ) {
-                                    setFormulario({
-                                        type: "SET_WEIGHT",
-                                        payload: 0.5,
-                                    });
-                                } else {
-                                    setFormulario({
-                                        type: "SET_WEIGHT",
-                                        payload: e.target.value,
-                                    });
-                                }
-                            }}
-                        />
-                        <span>Kg</span>
-                    </div>
-                </div>
-                <button type="submit" name="submit" disabled={disabledSubmit}>
-                    Register!
-                </button>
-            </form>
+                    <button
+                        className={
+                            disabledSubmit ? styles.buttonDes : styles.buttonAct
+                        }
+                        type="submit"
+                        name="submit"
+                        disabled={disabledSubmit}
+                    >
+                        Register!
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

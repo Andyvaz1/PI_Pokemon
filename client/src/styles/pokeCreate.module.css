@@ -1,50 +1,113 @@
 .fondo1 {
     background: #356abc;
 }
-.myForm {
-    display: grid;
-    grid-template-columns: [labels] auto [controls] 1fr;
-    grid-auto-flow: row;
-    grid-gap: 0.8em 0.5em;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.body {
+    height: 100vh;
+    display: flex;
     justify-content: center;
-    padding: 1.2em;
-    width: 36em;
+    align-items: center;
+    padding: 10px;
+    background-image: url("../styles/imagenes/pokedex.jpg");
+    background-size: cover;
 }
-.myForm > label,
-.myForm > fieldset {
-    grid-column: labels;
-    grid-row: auto;
-}
-.myForm > select {
-    width: auto;
-}
-.myForm > input,
-.myForm > textarea {
-    grid-column: controls;
-    grid-row: auto;
-    padding: 0.4em;
-    border: 0;
-}
-.myForm > fieldset {
-    grid-column: span 2;
-}
+.container {
+    max-width: 800px;
+    width: 100%;
 
-.myForm > textarea {
-    min-height: 3em;
-}
-
-.button {
-    background: none;
-    border: 2px solid;
+    background-color: rgba(173, 216, 230, 0.582);
+    padding: 25px 30px;
     border-radius: 10px;
-    font: inherit;
-    line-height: 0;
-    margin: 0.5em;
-    padding: 0.8em 1.5em;
-    color: var(--color);
-    transition: 0.25s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    align-items: center;
+    justify-content: center;
 }
-.button:hover {
-    border-color: var(--hover);
+.container .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: top;
+}
+.container form {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+.typesDetails {
+    columns: 4 8em;
+    margin: 5px;
+}
+
+.buttonAct {
+    height: 50px;
+    width: 200px;
+    margin: 35px 0;
+    cursor: pointer;
+    background: linear-gradient(135deg, #71b7e6, #07dd67);
+    transition: all 0.3s ease;
+    border-radius: 5%;
+    position: center;
+    cursor: pointer;
+}
+
+.buttonDes {
+    height: 50px;
+    margin: 35px 0;
+    width: 200px;
+    background: transparent;
+    transition: all 0.3s ease;
+    border-radius: 5%;
+    position: center;
+    cursor: default;
+}
+form .button input {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
     color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.inputNumber {
+    width: 60px;
+    border-radius: 3px;
+    border-color: rgba(240, 248, 255, 0.356);
+    margin-right: 15px;
+    font-size: small;
+    font-weight: 1000;
+}
+
+.spancito {
+    font-size: small;
+}
+
+.spancitoError {
+    font-size: small;
+    color: red;
+}
+
+.inputName {
+    padding-left: 2px;
+
+    margin-right: 15px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #4385e763;
+    color: black;
+}
+
+.inputName:focus {
+    background-color: #4385e7;
+    border-color: rgba(240, 248, 255, 0.281);
 }
