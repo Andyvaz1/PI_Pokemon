@@ -8,6 +8,9 @@
     overflow: hidden;
 }
 
+.imgPokeBall {
+    size: 20%;
+}
 .link {
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
@@ -44,15 +47,28 @@ span {
     -o-transition: all 0.2s ease-in;
     -webkit-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
-    opacity: 0.9;
+    opacity: 0.95;
     cursor: pointer;
 }
 
 .videoContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    left: 0px;
+    top: 0px;
+    z-index: -1000;
+    overflow: hidden;
+}
+
+.videoPlayer {
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .videoOverlay {
@@ -64,3 +80,46 @@ span {
     height: 100vh;
     opacity: 0.1;
 }
+
+/* toggle-pill-color */
+.toggle-pill-color input[type="checkbox"] {
+    display: none;
+}
+.toggle-pill-color input[type="checkbox"] + label {
+    display: block;
+    position: relative;
+    width: 3em;
+    height: 1.6em;
+    margin-bottom: 20px;
+    border-radius: 1em;
+    background: #e84d4d;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-transition: background 0.1s ease-in-out;
+    transition: background 0.1s ease-in-out;
+}
+.toggle-pill-color input[type="checkbox"] + label:before {
+    content: "";
+    display: block;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 1em;
+    background: #fff;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0.2em;
+    top: 0.2em;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.toggle-pill-color input[type="checkbox"]:checked + label {
+    background: #47cf73;
+}
+.toggle-pill-color input[type="checkbox"]:checked + label:before {
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+    left: 1.6em;
+}
+/* toggle-pill-color end */

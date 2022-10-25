@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/navBar.module.css";
 import homeIcon from "../styles/imagenes/homeIcon2.png";
+import titleImg from "../styles/imagenes/title.png";
 
 export function NavBar() {
     return (
@@ -15,9 +16,7 @@ export function NavBar() {
             <Link to="/home" className={styles.linkLogo}>
                 <div>
                     <h1 className={styles.h1}>
-                        <span>The Pokemon Oracle</span>
-
-                        <span className={styles.span}>🔮</span>
+                        <img src={titleImg} alt="The Pokemon Oracle" />
                     </h1>
                 </div>
             </Link>
