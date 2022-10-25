@@ -1,20 +1,13 @@
 import { useState, useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPokemon, getAllTypes } from "../redux/actions";
+import styles from "../styles/pokeCreate.module.css";
 export function PokeCreate() {
     const dispatch = useDispatch();
     ///Estados locales y globales///////
     const { allTypes } = useSelector((state) => state);
     const [disabledSubmit, setDisabledSubmit] = useState(true);
-    const [nameState, setNameState] = useState("");
     const [checked, setChecked] = useState([]);
-    const [hpState, setHpState] = useState(1);
-    const [attackState, setAttackState] = useState(1);
-    const [defenceState, setDefenceState] = useState(1);
-    const [speedState, setSpeedState] = useState(1);
-    const [heightState, setHeightState] = useState(1);
-    const [weightState, setWeightState] = useState(1);
-    const [typeSelection, setTypeSelection] = useState([]);
 
     /////LOCAL REDUCER//////////
     const initialState = {
@@ -141,9 +134,10 @@ export function PokeCreate() {
     }
 
     return (
-        <div>
+        <div className={styles.fondo1}>
             <h1>Register a new Pokemon!</h1>
             <form
+                className={styles.myForm}
                 onSubmit={(e) => {
                     handleSubmit(e);
                 }}
@@ -390,7 +384,6 @@ export function PokeCreate() {
                     Register!
                 </button>
             </form>
-            <span>{formulario.types}</span>
         </div>
     );
 }
