@@ -154,7 +154,6 @@ export function Home() {
 
     return (
         <div>
-            <h1>PokeOracle</h1>
             <SearchBar
                 setCurrentPage={setCurrentPage}
                 setLocalPokemons={setLocalPokemons}

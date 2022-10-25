@@ -64,8 +64,8 @@ export const createPokemon = (newPokemon) => {
                 attack: newPokemon.attack,
                 defence: newPokemon.defence,
                 speed: newPokemon.speed,
-                height: newPokemon.height,
-                weight: newPokemon.weight,
+                height: newPokemon.height * 0.393701, //paso de cm a inch //
+                weight: newPokemon.weight * 2.2, //paso de kg a pound //
             })
             .then((json) =>
                 dispatch({ type: CREATE_POKEMON, payload: json.data })

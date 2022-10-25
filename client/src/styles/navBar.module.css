@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+.link {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 25x;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 25x;
+}
+.span {
+    font-size: 3ex;
+}
+
+.img {
+    color: #edf0f1;
+    background: -webkit-linear-gradient(#1973bc, #7319bc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.linkLogo {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 25x;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #24252a;
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0.5px inset;
+} */
+}
+
+.raise:hover,
+.raise:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+    cursor: pointer;
+}
+.raise2:hover,
+.raise2:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+    cursor: pointer;
+}
+
+.raise2 {
+    --color: #6c32c7;
+    --hover: #1973bc;
+}
+.raise {
+    --color: #6c32c7;
+    --hover: #19bc70;
+}
+
+button {
+    color: var(--color);
+    transition: 0.25s;
+}
+button:hover {
+    border-color: var(--hover);
+    color: #fff;
+}
+
+button {
+    background: none;
+    border: 2px solid;
+    border-radius: 10px;
+    font: inherit;
+    line-height: 0;
+    margin: 0.5em;
+    padding: 0.8em 1.5em;
+}

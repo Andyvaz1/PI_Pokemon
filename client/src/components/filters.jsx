@@ -2,17 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/filters.module.css";
 
-import {
-    getAllPokemons,
-    searchPokemon,
-    filterType,
-    filterOrigin,
-    filterAlphaAZ,
-    filterAlphaZA,
-    filterAttackAsc,
-    filterAttackDesc,
-} from "../redux/actions";
-
 export default function Filters({
     content,
     localPokemons,
@@ -29,10 +18,6 @@ export default function Filters({
     const [localOrigin, setLocalOrigin] = useState("All");
 
     /////// HOOKS /////////
-    /* useEffect(() => {
-        setLocalType("All");
-        setLocalOrigin("All");
-    }, []); */
 
     useEffect(() => {
         if (content.length > 0) {
