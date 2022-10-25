@@ -154,7 +154,7 @@ export function Home() {
     ////////RENDERIZADO//////////
 
     return (
-        <div>
+        <div className={styles.fondo1}>
             <SearchBar
                 setCurrentPage={setCurrentPage}
                 setLocalPokemons={setLocalPokemons}
@@ -165,17 +165,21 @@ export function Home() {
             />
             <div>
                 <Pagination
+                    className={styles.button}
                     max={max}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
             </div>
-            <div className={styles.grid}>
+            <div
+                className={
+                    localPokemons.length === 0
+                        ? styles.videoContainer
+                        : styles.grid
+                }
+            >
                 {localPokemons.length === 0 ? (
-                    <div className={styles.loading}>
-                        LOADING
-                        <img alt="loading" src={loadingGif} />
-                    </div>
+                    <div className={styles.loadingContainer}></div>
                 ) : localPokemons[0] === "Pokemon Not Found" ? (
                     <div className={styles.loading}>Pokemon Not Found</div>
                 ) : (

@@ -38,7 +38,7 @@ form {
 }
 .buttonSearch:hover {
     cursor: pointer;
-    background-color: #6c32c7;
+    background-color: #356abc;
     transform: translateY(-0.2em);
 }
 .iconSearch {
@@ -53,7 +53,7 @@ form {
     height: 40px;
     border-radius: 5px;
     font-size: medium;
-    background-color: #6b32c788;
+    background-color: #4385e7;
     color: aliceblue;
 }
 

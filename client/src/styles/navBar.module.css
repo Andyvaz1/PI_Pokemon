@@ -61,24 +61,15 @@
 }
 
 .raise2 {
-    --color: #6c32c7;
-    --hover: #1973bc;
+    --color: #356abc;
+    --hover: #208ee9;
 }
 .raise {
-    --color: #6c32c7;
+    --color: #356abc;
     --hover: #19bc70;
 }
 
-button {
-    color: var(--color);
-    transition: 0.25s;
-}
-button:hover {
-    border-color: var(--hover);
-    color: #fff;
-}
-
-button {
+.button {
     background: none;
     border: 2px solid;
     border-radius: 10px;
@@ -86,4 +77,10 @@ button {
     line-height: 0;
     margin: 0.5em;
     padding: 0.8em 1.5em;
+    color: var(--color);
+    transition: 0.25s;
+}
+.button:hover {
+    border-color: var(--hover);
+    color: #fff;
 }

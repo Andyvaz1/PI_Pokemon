@@ -8,7 +8,7 @@ export function NavBar() {
         <header className={styles.header}>
             <div>
                 <Link to="/home" className={styles.link}>
-                    <button className={styles.raise2}>
+                    <button className={`${styles.raise2} ${styles.button}`}>
                         <img src={homeIcon} alt="Home" />
                     </button>
                 </Link>
@@ -21,7 +21,7 @@ export function NavBar() {
                 </div>
             </Link>
             <div>
-                <button className={styles.raise}>
+                <button className={`${styles.raise} ${styles.button}`}>
                     <Link to="/pokemoncreate" className={styles.link}>
                         + Add Pokemon
                     </Link>

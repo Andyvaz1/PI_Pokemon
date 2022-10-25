@@ -4,8 +4,6 @@ import styles from "../styles/filters.module.css";
 
 export default function Filters({
     content,
-    localPokemons,
-    setCurrentPage,
     setLocalPokemons,
     localOrder,
     setLocalOrder,
