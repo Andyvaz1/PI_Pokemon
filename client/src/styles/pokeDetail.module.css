@@ -1,24 +1,132 @@
 .fondo {
-    background: #6c32c7;
+    background-image: url("../styles/imagenes/fondito.png");
     width: 100vw;
     height: 100vh;
     margin: 0;
-    padding: 0;
-    display: grid;
+    padding: 50px;
 }
-.generos {
+
+.grid {
+    display: grid;
+    align-items: center;
+    gap: 150px;
+    padding: 25px;
+    justify-content: center;
+    margin-right: 100px;
+    margin-bottom: 15px;
+}
+.character {
     flex-direction: row;
     display: flex;
     flex-direction: row;
-}
-h1 {
-    margin: 0;
-    padding: 0;
+    margin-left: 350px;
 }
 
-.img {
-    height: 450px;
-    width: 900px;
+.character span {
+    font-size: larger;
+}
+.imagen {
+    width: 305px;
+    height: 245px;
+}
+
+.container {
+    position: center;
+}
+
+.container .card {
+    border-style: solid;
+
+    margin-left: 250px;
+    width: 1000px;
+    height: 620px;
+    background: #e9e9e9b4;
     border-radius: 20px;
-    position: relative;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.container .card .imgBx {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+
+    transform: translateY(-50%);
+    z-index: 10000;
+    width: 100%;
+    height: 110px;
+    transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+    top: 0%;
+    transform: translateY(0%);
+}
+
+.container .card .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    width: 200px;
+}
+
+.container .card .contentBx {
+    position: absolute;
+    bottom: 10;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    transition: 1s;
+    z-index: 10;
+}
+
+.link {
+    text-decoration: none;
+    margin: 0px;
+    padding: 0%;
+    color: black;
+}
+
+.h1 {
+    margin: 1px;
+    margin-right: 600px;
+    font-size: px;
+}
+.types {
+    margin-left: 400px;
+}
+
+.types span {
+    font-size: larger;
+}
+
+.typeImage {
+    width: 80px;
+    aspect-ratio: auto 80 / 80;
+    height: 80px;
+}
+
+.loading {
+    background-image: url("../styles/videos/loading.gif");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+
+    padding-top: 250px;
+    margin: 0px;
+}
+
+.imagen {
+    margin-top: 20px;
+    margin-left: 300px;
+    width: 305px;
+    height: 245px;
+}
+
+.bio {
+    margin-left: 50px;
 }

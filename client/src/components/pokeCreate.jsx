@@ -2,12 +2,53 @@ import { useState, useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPokemon, getAllTypes } from "../redux/actions";
 import styles from "../styles/pokeCreate.module.css";
+import grass from "../styles/imagenes/grass.png";
+import bug from "../styles/imagenes/bug.png";
+import dark from "../styles/imagenes/dark.png";
+import dragon from "../styles/imagenes/dragon.png";
+import electric from "../styles/imagenes/electric.png";
+import fairy from "../styles/imagenes/fairy.png";
+import fighting from "../styles/imagenes/fighting.png";
+import fire from "../styles/imagenes/fire.png";
+import flying from "../styles/imagenes/flying.png";
+import ghost from "../styles/imagenes/ghost.png";
+import water from "../styles/imagenes/water.png";
+import ground from "../styles/imagenes/ground.png";
+import ice from "../styles/imagenes/ice.png";
+import normal from "../styles/imagenes/normal.png";
+import poison from "../styles/imagenes/poison.png";
+import psychic from "../styles/imagenes/psychic.png";
+import rock from "../styles/imagenes/rock.png";
+import steel from "../styles/imagenes/steel.png";
+
 export function PokeCreate() {
     const dispatch = useDispatch();
     ///Estados locales y globales///////
     const { allTypes } = useSelector((state) => state);
     const [disabledSubmit, setDisabledSubmit] = useState(true);
     const [checked, setChecked] = useState([]);
+
+    //////obj imagenes types//////
+    let objType = {
+        grass: grass,
+        bug: bug,
+        dark: dark,
+        dragon: dragon,
+        electric: electric,
+        fairy: fairy,
+        fighting: fighting,
+        fire: fire,
+        flying: flying,
+        ghost: ghost,
+        water: water,
+        ground: ground,
+        ice: ice,
+        normal: normal,
+        poison: poison,
+        psychic: psychic,
+        rock: rock,
+        steel: steel,
+    };
 
     /////LOCAL REDUCER//////////
     const initialState = {
@@ -202,8 +243,15 @@ export function PokeCreate() {
                                         key={index}
                                         className={styles.typesDetails}
                                     >
+                                        <img
+                                            id={e.name}
+                                            className={styles.typeImage}
+                                            alt={e.name}
+                                            src={objType[e.name]}
+                                        ></img>
                                         <label>
-                                            {e.name.charAt(0).toUpperCase() +
+                                            {" " +
+                                                e.name.charAt(0).toUpperCase() +
                                                 e.name.slice(1) +
                                                 " "}
                                         </label>
@@ -245,7 +293,6 @@ export function PokeCreate() {
                             value={formulario.hp}
                             min={1}
                             max={1000}
-                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -277,7 +324,6 @@ export function PokeCreate() {
                             value={formulario.attack}
                             min={1}
                             max={1000}
-                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -309,7 +355,6 @@ export function PokeCreate() {
                             value={formulario.defence}
                             min={1}
                             max={1000}
-                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({
@@ -341,7 +386,6 @@ export function PokeCreate() {
                             value={formulario.speed}
                             min={1}
                             max={1000}
-                            step={10}
                             onChange={(e) => {
                                 if (e.target.value > 1000) {
                                     setFormulario({

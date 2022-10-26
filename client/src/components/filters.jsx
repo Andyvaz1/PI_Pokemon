@@ -136,6 +136,7 @@ export default function Filters({
                     </option>
                 </select>
                 <button
+                    className={styles.buttonApply}
                     name="apply"
                     onClick={(e) => {
                         applyFilter(e);
@@ -146,7 +147,7 @@ export default function Filters({
             </form>
             <span></span>
             <form onChange={(e) => setLocalOrder(e.target.value)}>
-                <label className={styles.label}>Order by:</label>
+                <label className={styles.labelOrder}>Order by:</label>
                 <select name="orderBy" className={styles.selectFilter}>
                     <option key="-" value="-">
                         -

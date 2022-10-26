@@ -15,9 +15,26 @@
     color: aliceblue;
 }
 
+.labelOrder {
+    margin-right: 5px;
+    margin-left: 550px;
+    color: aliceblue;
+}
+
 .selectFilter {
     border-radius: 5px;
     font-size: medium;
     background-color: #356abc;
     color: aliceblue;
+}
+
+.buttonApply {
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 3px;
+}
+.buttonApply:hover {
+    color: black;
+    background-color: rgb(42, 241, 168);
 }

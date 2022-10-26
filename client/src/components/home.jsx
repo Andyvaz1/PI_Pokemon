@@ -1,12 +1,11 @@
 import { getAllPokemons, getAllTypes } from "../redux/actions";
 import PokeCard from "./pokeCard";
 import Pagination from "./pagination";
-
 import { SearchBar } from "./searchBar";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/home.module.css";
-import loadingGif from "../styles/videos/loading.gif";
+import notFoundPic from "../styles/imagenes/notFound.png";
 
 export function Home() {
     /////////TRAER EL DISPATCH PARA USAR EL REDUCER Y PROPIEDAD allPokemons del estado Global/////////
@@ -21,7 +20,7 @@ export function Home() {
     const [localOrder, setLocalOrder] = useState("-");
 
     /////////////HOOKS///////////
-    console.log("afuera", localPokemons);
+    console.log(currentPage);
     useEffect(() => {
         dispatch(getAllPokemons());
         dispatch(getAllTypes());
@@ -121,7 +120,6 @@ export function Home() {
     }
 
     function orderBy(e, array) {
-        console.log("funcion OrderBy", localOrder);
         let sorted = [];
         if (localPokemons === undefined) {
             sorted = [];
@@ -144,7 +142,7 @@ export function Home() {
         if (e === "attackDesc") {
             sorted = orderAttackDesc(array);
         }
-        console.log(array);
+
         return array;
     }
     ///////VARIABLES///////
@@ -163,14 +161,16 @@ export function Home() {
                 setLocalOrder={setLocalOrder}
                 orderBy={orderBy}
             />
-            <div>
+            {max > 0 ? (
                 <Pagination
                     className={styles.button}
                     max={max}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
-            </div>
+            ) : (
+                <span></span>
+            )}
             <div
                 className={
                     localPokemons.length === 0
@@ -179,9 +179,13 @@ export function Home() {
                 }
             >
                 {localPokemons.length === 0 ? (
-                    <div className={styles.loadingContainer}></div>
+                    <div></div>
                 ) : localPokemons[0] === "Pokemon Not Found" ? (
-                    <div className={styles.loading}>Pokemon Not Found</div>
+                    <img
+                        className={styles.notFound}
+                        src={notFoundPic}
+                        alt="Pokemon Not Found"
+                    ></img>
                 ) : (
                     localPokemons
                         .slice(
@@ -201,14 +205,18 @@ export function Home() {
                 )}
                 <br />
             </div>
-            <div>
+
+            {max > 0 ? (
                 <Pagination
+                    className={styles.button}
                     max={max}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
-                <br />
-            </div>
+            ) : (
+                <span></span>
+            )}
+            <br />
         </div>
     );
 }

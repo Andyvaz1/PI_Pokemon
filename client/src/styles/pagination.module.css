@@ -1,11 +1,26 @@
 .pagContainer {
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .button1 {
-    color: antiquewhite;
+    width: 30px;
+    margin: 4px;
+    padding: 5px;
+    color: white;
+
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    cursor: pointer;
+}
+.button1 :target {
+    border-color: black;
+    width: 30px;
+    margin: 4px;
+    padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
         rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
         rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -13,13 +28,17 @@
 }
 
 .button2 {
+    width: 30px;
+    margin: 4px;
+    padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
         rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
         rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     cursor: pointer;
 }
 .button2:hover {
-    color: rgba(250, 235, 215, 0.705);
+    color: black;
+
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
         rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
         rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -27,6 +46,8 @@
 }
 
 .button3 {
+    margin: 4px;
+    padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
         rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
         rgba(0, 0, 0, 0.2) 0px -3px 0px inset;

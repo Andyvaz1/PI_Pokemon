@@ -136,7 +136,7 @@ router.get("/:idPokemon", async (req, res) => {
         res.json(pokemonDetail);
     } catch (error) {
         if (!(dbPokemon[0] == null)) {
-            res.json(dbPokemon);
+            res.json(dbPokemon[0]);
         } else {
             res.send("Id Not Found");
         }
