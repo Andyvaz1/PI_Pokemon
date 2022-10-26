@@ -10,7 +10,7 @@ const urlTypes = "https://pokeapi.co/api/v2/type";
 (async () => {
     let responseApi = await axios.get(urlTypes);
     let typesApi = responseApi.data.results;
-    let preloadTDB = await Promise.all(
+    let preloadT = await Promise.all(
         typesApi.map(async (t) => {
             let typesdb = await Type.create({ name: t.name });
         })

@@ -18,6 +18,8 @@ import poison from "../styles/imagenes/poison.png";
 import psychic from "../styles/imagenes/psychic.png";
 import rock from "../styles/imagenes/rock.png";
 import steel from "../styles/imagenes/steel.png";
+import unknown from "../styles/imagenes/unknown.png";
+import shadow from "../styles/imagenes/shadow.png";
 
 export default function PokeCard(props) {
     let objType = {
@@ -39,6 +41,8 @@ export default function PokeCard(props) {
         psychic: psychic,
         rock: rock,
         steel: steel,
+        unknown: unknown,
+        shadow: shadow,
     };
 
     return (

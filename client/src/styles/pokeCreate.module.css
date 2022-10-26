@@ -122,3 +122,10 @@ form .button input {
     aspect-ratio: auto 25 / 25;
     height: 25px;
 }
+
+.typeImageDis {
+    width: 25px;
+    aspect-ratio: auto 25 / 25;
+    height: 25px;
+    opacity: 0.2;
+}

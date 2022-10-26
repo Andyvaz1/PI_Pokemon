@@ -20,6 +20,8 @@ import poison from "../styles/imagenes/poison.png";
 import psychic from "../styles/imagenes/psychic.png";
 import rock from "../styles/imagenes/rock.png";
 import steel from "../styles/imagenes/steel.png";
+import shadow from "../styles/imagenes/shadow.png";
+import unknown from "../styles/imagenes/unknown.png";
 
 export function PokeCreate() {
     const dispatch = useDispatch();
@@ -48,6 +50,8 @@ export function PokeCreate() {
         psychic: psychic,
         rock: rock,
         steel: steel,
+        unknown: unknown,
+        shadow: shadow,
     };
 
     /////LOCAL REDUCER//////////
@@ -245,7 +249,12 @@ export function PokeCreate() {
                                     >
                                         <img
                                             id={e.name}
-                                            className={styles.typeImage}
+                                            className={
+                                                !checked.includes(index) &&
+                                                checked.length > 1
+                                                    ? styles.typeImageDis
+                                                    : styles.typeImage
+                                            }
                                             alt={e.name}
                                             src={objType[e.name]}
                                         ></img>
