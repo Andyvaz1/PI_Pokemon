@@ -192,6 +192,19 @@ export function PokeCreate() {
                         <h4>
                             Name{" "}
                             {formulario.name !== "" &&
+                            formulario.name[0] !== " " &&
+                            formulario.name !== " " &&
+                            formulario.name !== "  " &&
+                            formulario.name !== "   " &&
+                            formulario.name !== "    " &&
+                            formulario.name !== "     " &&
+                            formulario.name !== "      " &&
+                            formulario.name !== "       " &&
+                            formulario.name !== "        " &&
+                            formulario.name !== "         " &&
+                            formulario.name !== "          " &&
+                            formulario.name !== "           " &&
+                            formulario.name !== "            " &&
                             formulario.name.length <= 12 ? (
                                 <span> ✅</span>
                             ) : (
