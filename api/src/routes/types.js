@@ -7,15 +7,20 @@ const { Pokemon, Type } = require("../db.js");
 const urlTypes = "https://pokeapi.co/api/v2/type";
 
 //////////////PRE-LOAD TYPES de la API a la DB/////////////
-(async () => {
-    let responseApi = await axios.get(urlTypes);
-    let typesApi = responseApi.data.results;
-    let preloadT = await Promise.all(
-        typesApi.map(async (t) => {
-            let typesdb = await Type.create({ name: t.name });
-        })
-    );
-})();
+
+// let preload = async () => {
+//     let responseApi = await axios.get(urlTypes);
+//     let typesApi = responseApi.data.results;
+//     let preloadT = await Promise.all(
+//         typesApi.map(async (t) => {
+//             await Type.create({ name: t.name });
+//         })
+//     );
+// };
+
+
+// preload();
+
 
 router.get("/", async (req, res) => {
     try {

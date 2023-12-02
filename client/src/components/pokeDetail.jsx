@@ -60,6 +60,8 @@ export function PokeDetail() {
         steel: steel,
     };
 
+    console.log(pokemonDetail.dataBase)
+
     return (
         <div>
             {pokemonDetail.name ? (
@@ -68,7 +70,7 @@ export function PokeDetail() {
                         <div className={styles.card}>
                             <div className={styles.contentBx}>
                                 <h1 className={styles.h1}>
-                                    #{pokemonDetail.id}
+                                    {!pokemonDetail.dataBase ? `#${pokemonDetail.id}` : ""}
                                     <span> </span>
                                     {pokemonDetail.name
                                         ?.charAt(0)
