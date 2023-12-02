@@ -22,6 +22,7 @@ const urlTypes = "https://pokeapi.co/api/v2/type";
 // preload();
 
 
+
 router.get("/", async (req, res) => {
     try {
         const dbTypes = await Type.findAll();
